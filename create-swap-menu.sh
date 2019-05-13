@@ -6,6 +6,7 @@ echo -e " \033[34;47m SELECCIONA UNA OPCIÓN: \033[0m"
 echo " 1.-Crear swap."
 echo " 2.-Activar swap."
 echo " 3.-Eliminar archivos swap."
+echo " 4.-Corroborar estado de swap."
 
     read opcion
     case $opcion in
@@ -26,47 +27,51 @@ echo " 3.-Eliminar archivos swap."
 
     echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
-    2) echo "Activado"
-    chmod 600 /swapfile
+        2) echo "Activado"
+        chmod 600 /swapfile
 
-    mkswap /swapfile
+        mkswap /swapfile
 
-    swapon /swapfile
+        swapon /swapfile
 
-    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+        echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
-    echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
-
-    echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
-
-    echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
-
-    echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
+        echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
     
         ;;
     
-        3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
+            3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
 
-        read opcion
-        case $opcion in
-        s|S) echo "Eliminado"
+            read opcion
+            case $opcion in
+            s|S) echo "Eliminado"
 
-        swapoff -a
+            swapoff -a
 
-        sed -i 's/^.*swap.*$//gm' /etc/fstab
+            sed -i 's/^.*swap.*$//gm' /etc/fstab
 
-        rm -f /swapfile
+            rm -f /swapfile
 
-        echo "fstab restaurado"
+            echo "fstab restaurado"
 
-        ;;
+            ;;
 
-        n|N) echo "Cancelado"
-        ;;
+            n|N) echo "Cancelado"
+            ;;
 
-        *) echo "Elige una opcion valida";;
+            *) echo "Elige una opcion valida";;
+        
+            esac;;
 
-        esac
+                4) echo "Estado de la memoria SWAP es.."
+
+                echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
+
+                echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
+
+                echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
+                ;;
+
     esac
 while true
 do
@@ -82,6 +87,7 @@ echo -e " \033[34;47m SELECCIONA UNA OPCIÓN: \033[0m"
 echo " 1.-Crear swap."
 echo " 2.-Activar swap."
 echo " 3.-Eliminar archivos swap."
+echo " 4.-Corroborar estado de swap."
 
     read opcion
     case $opcion in
@@ -102,47 +108,50 @@ echo " 3.-Eliminar archivos swap."
 
     echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
-    2) echo "Activado"
-    chmod 600 /swapfile
+        2) echo "Activado"
+        chmod 600 /swapfile
 
-    mkswap /swapfile
+        mkswap /swapfile
 
-    swapon /swapfile
+        swapon /swapfile
 
-    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+        echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
-    echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
-
-    echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
-
-    echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
-
-    echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
+        echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
     
         ;;
     
-        3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
+            3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
 
-        read opcion
-        case $opcion in
-        s|S) echo "Eliminado"
+            read opcion
+            case $opcion in
+            s|S) echo "Eliminado"
 
-        swapoff -a
+            swapoff -a
 
-        sed -i 's/^.*swap.*$//gm' /etc/fstab
+            sed -i 's/^.*swap.*$//gm' /etc/fstab
 
-        rm -f /swapfile
+            rm -f /swapfile
 
-        echo "fstab restaurado"
+            echo "fstab restaurado"
 
-        ;;
+            ;;
 
-        n|N) echo "Cancelado"
-        ;;
+            n|N) echo "Cancelado"
+            ;;
 
-        *) echo "Elige una opcion valida";;
+            *) echo "Elige una opcion valida";;
+        
+            esac;;
 
-        esac
+                4) echo "Estado de la memoria SWAP es.."
+
+                echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
+
+                echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
+
+                echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
+                ;;
     esac
      ;;
     quit | [Qq])
