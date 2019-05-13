@@ -112,6 +112,12 @@ echo " 3.-Eliminar archivos swap."
     echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
     echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
+
+    echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
+
+    echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
+
+    echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
     
         ;;
     
