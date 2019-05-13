@@ -30,92 +30,82 @@ echo " 7.-Apagar sistema"
 
     echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
-        2) echo "Activado"
-        chmod 600 /swapfile
+    2) echo "Activado"
+    chmod 600 /swapfile
 
-        mkswap /swapfile
+    mkswap /swapfile
 
-        swapon /swapfile
+    swapon /swapfile
 
-        echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
-        echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
+    echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab;;
     
-        ;;
-    
-            3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
+    3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
 
-            read opcion
-            case $opcion in
-            s|S) echo "Eliminado"
+    read opcion
+    case $opcion in
+    s|S) echo "Eliminado"
 
-            swapoff -a
+    swapoff -a
 
-            sed -i 's/^.*swap.*$//gm' /etc/fstab
+    sed -i 's/^.*swap.*$//gm' /etc/fstab
 
-            rm -f /swapfile
+    rm -f /swapfile
 
-            echo "fstab restaurado"
+    echo "fstab restaurado";;
 
-            ;;
+    n|N) echo "Cancelado";;
 
-            n|N) echo "Cancelado"
-            ;;
-
-            *) echo "Elige una opcion valida";;
+    *) echo "Elige una opcion valida";;
         
-            esac;;
+    esac;;
 
-                4) echo "Estado de la memoria SWAP es.."
+    4) echo "Estado de la memoria SWAP es.."
 
-                echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
+    echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
 
-                echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
+    echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
 
-                echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
-                ;;
+    echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb;;
 
-                    5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
-                     echo "a.-Ver cantidad de swappiness asignado"
-                     echo "b.-Cambiar valor swappiness"
-                     echo "c.-Eliminar cambios y dejar valor por default"
+    5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
+                     
+        echo "a.-Ver cantidad de swappiness asignado"
+        echo "b.-Cambiar valor swappiness"
+        echo "c.-Eliminar cambios y dejar valor por default"
 
-                     read opcion
-                     case $opcion in
+        read opcion
+        case $opcion in
 
-                     a) echo "Ver cantidad de swappiness asignado"
+                a) echo "Ver cantidad de swappiness asignado"
 
-                        cat /proc/sys/vm/swappiness
-                        ;;
+                    cat /proc/sys/vm/swappiness;;
 
-                    b) echo "Ingresa un numero entre 1 y 100 para cambiar el valor swappiness"
+                b) echo "Ingresa un numero entre 1 y 100 para cambiar el valor swappiness"
 
-                    echo ""
+                echo ""
 
-                    read valor
+                read valor
 
-                    echo $valor > /proc/sys/vm/swappiness
+                echo $valor > /proc/sys/vm/swappiness
 
-                    echo "vm.swappiness = $valor" /etc/sysctl.conf
+                echo "vm.swappiness = $valor" /etc/sysctl.conf;;
 
-                    ;;
+                c) echo "Listo, el valor volvera por default en el proximo reinicio"
 
-                    c) echo "Listo, el valor volvera por default en el proximo reinicio"
+                sed -i 's/^.*swappiness.*$//gm' /etc/sysctl.conf;;
 
-                    sed -i 's/^.*swappiness.*$//gm' /etc/sysctl.conf
-                    ;;
-                    esac
-                    ;;
+                esac;;
 
-                        6) echo "Hecho, hasta luego"; sleep 2
+    6) echo "Hecho, hasta luego"; sleep 2
 
-                        sudo systemctl reboot
-                        ;;
+    sudo systemctl reboot;;
 
-                            7) echo "OK, Apagando"; sleep 2
+    7) echo "OK, Apagando"; sleep 2
 
-                            sudo systemctl poweroff
-                            ;;
+    sudo systemctl poweroff;;
+
     esac
 while true
 do
@@ -155,90 +145,81 @@ echo " 7.-Apagar sistema"
 
     echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
-        2) echo "Activado"
-        chmod 600 /swapfile
+    2) echo "Activado"
+    chmod 600 /swapfile
 
-        mkswap /swapfile
+    mkswap /swapfile
 
-        swapon /swapfile
+    swapon /swapfile
 
-        echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
-        echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
+    echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab;;
     
-        ;;
-    
-            3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
+    3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
 
-            read opcion
-            case $opcion in
-            s|S) echo "Eliminado"
+    read opcion
+    case $opcion in
+    s|S) echo "Eliminado"
 
-            swapoff -a
+    swapoff -a
 
-            sed -i 's/^.*swap.*$//gm' /etc/fstab
+    sed -i 's/^.*swap.*$//gm' /etc/fstab
 
-            rm -f /swapfile
+    rm -f /swapfile
 
-            echo "fstab restaurado"
+    echo "fstab restaurado";;
 
-            ;;
+    n|N) echo "Cancelado";;
 
-            n|N) echo "Cancelado"
-            ;;
-
-            *) echo "Elige una opcion valida";;
+    *) echo "Elige una opcion valida";;
         
-            esac;;
+    esac;;
 
-                4) echo "Estado de la memoria SWAP es.."
+    4) echo "Estado de la memoria SWAP es.."
 
-                echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
+    echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
 
-                echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
+    echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
 
-                echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
-                ;;
+    echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb;;
 
-                    5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
-                     echo "a.-Ver cantidad de swappiness asignado"
-                     echo "b.-Cambiar valor swappiness"
-                     echo "c.-Eliminar cambios y dejar valor por default"
+    5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
+                     
+        echo "a.-Ver cantidad de swappiness asignado"
+        echo "b.-Cambiar valor swappiness"
+        echo "c.-Eliminar cambios y dejar valor por default"
 
-                     read opcion
-                     case $opcion in
+        read opcion
+        case $opcion in
 
-                     a) echo "Ver cantidad de swappiness asignado"
+                a) echo "Ver cantidad de swappiness asignado"
 
-                        cat /proc/sys/vm/swappiness
-                        ;;
+                    cat /proc/sys/vm/swappiness;;
 
-                    b) echo "Ingresa un numero entre 1 y 100 para cambiar el valor swappiness"
+                b) echo "Ingresa un numero entre 1 y 100 para cambiar el valor swappiness"
 
-                    echo ""
+                echo ""
 
-                    read valor
-                    
-                    echo $valor > /proc/sys/vm/swappiness
+                read valor
 
-                    echo "vm.swappiness = $valor" /etc/sysctl.conf
-                    ;;
+                echo $valor > /proc/sys/vm/swappiness
 
-                    c) echo "Listo, el valor volvera por default en el proximo reinicio"
+                echo "vm.swappiness = $valor" /etc/sysctl.conf;;
 
-                    sed -i 's/^.*swappiness.*$//gm' /etc/sysctl.conf
-                    ;;
-                    esac
-                    ;;
+                c) echo "Listo, el valor volvera por default en el proximo reinicio"
 
-                        6) echo "Hecho, hasta luego"; sleep 2
-                        sudo systemctl reboot
-                        ;;
+                sed -i 's/^.*swappiness.*$//gm' /etc/sysctl.conf;;
 
-                            7) echo "OK, Apagando"; sleep 2
+                esac;;
 
-                            sudo systemctl poweroff
-                            ;;
+    6) echo "Hecho, hasta luego"; sleep 2
+
+    sudo systemctl reboot;;
+
+    7) echo "OK, Apagando"; sleep 2
+
+    sudo systemctl poweroff;;
 
     esac
      ;;
