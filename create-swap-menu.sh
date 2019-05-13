@@ -1,8 +1,8 @@
 #!/bin/bash
 
 clear
-echo " * SCRIPT PARA CREAR ARCHIVO SWAP * "
-echo " SELECCIONA UNA OPCIÓN:"
+echo -e " \033[34;47m SCRIPT PARA CREAR ARCHIVO SWAP \033[0m"
+echo -e " \033[34;47m SELECCIONA UNA OPCIÓN: \033[0m"
 echo " 1.-Crear swap."
 echo " 2.-Activar swap."
 echo " 3.-Eliminar archivos swap."
@@ -67,8 +67,8 @@ do
 #!/bin/bash
 
 clear
-echo " * SCRIPT PARA CREAR ARCHIVO SWAP * "
-echo " SELECCIONA UNA OPCIÓN:"
+echo -e " \033[34;47m SCRIPT PARA CREAR ARCHIVO SWAP \033[0m"
+echo -e " \033[34;47m SELECCIONA UNA OPCIÓN: \033[0m"
 echo " 1.-Crear swap."
 echo " 2.-Activar swap."
 echo " 3.-Eliminar archivos swap."
