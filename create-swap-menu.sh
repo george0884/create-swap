@@ -106,6 +106,8 @@ echo " 7.-Apagar sistema"
 
     sudo systemctl poweroff;;
 
+    *) echo "Valor no valido, ingresa el valor correspondiente"
+
     esac
 while true
 do
@@ -220,6 +222,8 @@ echo " 7.-Apagar sistema"
     7) echo "OK, Apagando"; sleep 2
 
     sudo systemctl poweroff;;
+
+    *) echo "Valor no valido, ingresa el valor correspondiente"
 
     esac
      ;;
