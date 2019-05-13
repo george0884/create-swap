@@ -23,7 +23,7 @@ echo " 3.-Eliminar archivos swap."
     rm -f /swapfile 
 
     dd if=/dev/zero of=/swapfile bs=1G count=$gygas status=progress && sync
-    echo "copia de fstab hecha en /etc/fstab.bak";;
+    echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
     2) echo "Activado"
     chmod 600 /swapfile
@@ -89,7 +89,7 @@ echo " 3.-Eliminar archivos swap."
     rm -f /swapfile 
 
     dd if=/dev/zero of=/swapfile bs=1G count=$gygas status=progress && sync
-    echo "copia de fstab hecha en /etc/fstab.bak";;
+    echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
     2) echo "Activado"
     chmod 600 /swapfile
@@ -113,7 +113,7 @@ echo " 3.-Eliminar archivos swap."
         rm -f /swapfile
 
         sudo mv /etc/fstab.bak /etc/fstab
-        echo "fstab restaurado"
+        echo -e " \033[34m fstab restaurado \033[0m"
 
         ;;
 
