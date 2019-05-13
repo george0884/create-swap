@@ -23,6 +23,7 @@ echo " 3.-Eliminar archivos swap."
     rm -f /swapfile 
 
     dd if=/dev/zero of=/swapfile bs=1G count=$gygas status=progress && sync
+
     echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
     2) echo "Activado"
@@ -33,6 +34,9 @@ echo " 3.-Eliminar archivos swap."
     swapon /swapfile
 
     echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+    echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
+    
     
         ;;
     
@@ -44,9 +48,10 @@ echo " 3.-Eliminar archivos swap."
 
         swapoff -a
 
+        sed -i 's/^.*swap.*$//gm' /etc/fstab
+
         rm -f /swapfile
 
-        sudo mv /etc/fstab.bak /etc/fstab
         echo "fstab restaurado"
 
         ;;
@@ -89,6 +94,7 @@ echo " 3.-Eliminar archivos swap."
     rm -f /swapfile 
 
     dd if=/dev/zero of=/swapfile bs=1G count=$gygas status=progress && sync
+
     echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
     2) echo "Activado"
@@ -99,6 +105,8 @@ echo " 3.-Eliminar archivos swap."
     swapon /swapfile
 
     echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+    echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
     
         ;;
     
@@ -110,10 +118,11 @@ echo " 3.-Eliminar archivos swap."
 
         swapoff -a
 
+        sed -i 's/^.*swap.*$//gm' /etc/fstab
+
         rm -f /swapfile
 
-        sudo mv /etc/fstab.bak /etc/fstab
-        echo -e " \033[34m fstab restaurado \033[0m"
+        echo "fstab restaurado"
 
         ;;
 
