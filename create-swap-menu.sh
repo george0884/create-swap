@@ -7,6 +7,9 @@ echo " 1.-Crear swap."
 echo " 2.-Activar swap."
 echo " 3.-Eliminar y desactivar swap."
 echo " 4.-Corroborar estado de swap."
+echo " 5.-Optimizar swappiness"
+echo " 6.-Reiniciar sistema"
+echo " 7.-Apagar sistema"
 
     read opcion
     case $opcion in
@@ -72,6 +75,47 @@ echo " 4.-Corroborar estado de swap."
                 echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
                 ;;
 
+                    5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
+                     echo "a.-Ver cantidad de swappiness asignado"
+                     echo "b.-Cambiar valor swappiness"
+                     echo "c.-Eliminar cambios y dejar valor por default"
+
+                     read opcion
+                     case $opcion in
+
+                     a) echo "Ver cantidad de swappiness asignado"
+
+                        cat /proc/sys/vm/swappiness
+                        ;;
+
+                    b) echo "Ingresa un numero entre 1 y 100 para cambiar el valor swappiness"
+
+                    echo ""
+
+                    read valor
+
+                    echo $valor > /proc/sys/vm/swappiness
+
+                    echo "vm.swappiness = $valor" /etc/sysctl.conf
+
+                    ;;
+
+                    c) echo "Listo, el valor volvera por default en el proximo reinicio"
+
+                    sed -i 's/^.*swappiness.*$//gm' /etc/sysctl.conf
+                    ;;
+                    esac
+                    ;;
+
+                        6) echo "Hecho, hasta luego"; sleep 2
+
+                        sudo systemctl reboot
+                        ;;
+
+                            7) echo "OK, Apagando"; sleep 2
+
+                            sudo systemctl poweroff
+                            ;;
     esac
 while true
 do
@@ -88,6 +132,9 @@ echo " 1.-Crear swap."
 echo " 2.-Activar swap."
 echo " 3.-Eliminar y desactivar swap."
 echo " 4.-Corroborar estado de swap."
+echo " 5.-Optimizar swappiness"
+echo " 6.-Reiniciar sistema"
+echo " 7.-Apagar sistema"
 
     read opcion
     case $opcion in
@@ -152,6 +199,47 @@ echo " 4.-Corroborar estado de swap."
 
                 echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb
                 ;;
+
+                    5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
+                     echo "a.-Ver cantidad de swappiness asignado"
+                     echo "b.-Cambiar valor swappiness"
+                     echo "c.-Eliminar cambios y dejar valor por default"
+
+                     read opcion
+                     case $opcion in
+
+                     a) echo "Ver cantidad de swappiness asignado"
+
+                        cat /proc/sys/vm/swappiness
+                        ;;
+
+                    b) echo "Ingresa un numero entre 1 y 100 para cambiar el valor swappiness"
+
+                    echo ""
+
+                    read valor
+                    
+                    echo $valor > /proc/sys/vm/swappiness
+
+                    echo "vm.swappiness = $valor" /etc/sysctl.conf
+                    ;;
+
+                    c) echo "Listo, el valor volvera por default en el proximo reinicio"
+
+                    sed -i 's/^.*swappiness.*$//gm' /etc/sysctl.conf
+                    ;;
+                    esac
+                    ;;
+
+                        6) echo "Hecho, hasta luego"; sleep 2
+                        sudo systemctl reboot
+                        ;;
+
+                            7) echo "OK, Apagando"; sleep 2
+
+                            sudo systemctl poweroff
+                            ;;
+
     esac
      ;;
     quit | [Qq])
