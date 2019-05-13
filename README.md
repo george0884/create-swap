@@ -19,4 +19,3 @@ $ sudo chmod +x create-swap-menu.sh
 
 $ sudo ./create-swap-menu.sh
 ```
-![Captura de pantalla de 2019-05-13 00-44-36](https://user-images.githubusercontent.com/11846298/57594867-77bc3a00-7518-11e9-83b2-8418d03c2df4.png)
