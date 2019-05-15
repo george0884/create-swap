@@ -14,7 +14,7 @@ echo " 7.-Apagar sistema"
 
 		read opcion
 		case $opcion in
-
+		
 	1) echo "Escribe la cantidad de swap deseada en unidad numerica sera tomada en Gigabytes :"
     
 			echo ""
