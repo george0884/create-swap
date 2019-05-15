@@ -14,7 +14,6 @@ echo " 7.-Apagar sistema"
 
 		read opcion
 		case $opcion in
-		
 	1) echo "Escribe la cantidad de swap deseada en unidad numerica sera tomada en Gigabytes :"
     
 			echo ""
@@ -31,7 +30,7 @@ echo " 7.-Apagar sistema"
 
 			echo -e " \033[34m copia de fstab hecha en /etc/fstab.bak \033[0m";;
 
-    2) echo "Activado"
+	2) echo "Activado"
 			chmod 600 /swapfile
 
 			mkswap /swapfile
@@ -41,8 +40,8 @@ echo " 7.-Apagar sistema"
 			echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 			echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab;;
-    
-    3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
+	
+	3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
 
 		read opcion
 		case $opcion in
@@ -57,20 +56,20 @@ echo " 7.-Apagar sistema"
 			echo "fstab restaurado";;
 
 			n|N) echo "Cancelado";;
-
-    *) echo "Elige una opcion valida";;
+			
+	*) echo "Elige una opcion valida";;
         
     esac;;
-
-    4) echo "Estado de la memoria SWAP es.."
+    	
+	4) echo "Estado de la memoria SWAP es.."
 
 			echo "Swap total: " `free -m | grep Swap | awk '{print $(2)}'` Mb
 
 			echo "Swap usada: " `free -m | grep Swap | awk '{print $(3)}'` Mb
 
 			echo "Swap libre: " `free -m | grep Swap | awk '{print $(4)}'` Mb;;
-
-    5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
+			
+	5) echo "El parámetro de propensión a intercambiar puede tener un valor de entre 1 y 100, donde 0 significa “no intercambiar para nada” y 100 significa “intercambiar lo más pronto posible”"
                      
 			echo "a.-Ver cantidad de swappiness asignado"
 			echo "b.-Cambiar valor swappiness"
