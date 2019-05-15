@@ -232,6 +232,8 @@ echo " 7.-Apagar sistema"
 					c) echo "Listo, el valor volvera por default en el proximo reinicio"
 
 						sed -i 's/^.*swappiness.*$//gm' /etc/sysctl.conf;;
+						
+					*) echo "Elige una opcion valida";;
 
 						esac;;
 
@@ -243,7 +245,7 @@ echo " 7.-Apagar sistema"
 
 			sudo systemctl poweroff;;
 
-    *) echo "Valor no valido, ingresa el valor correspondiente"
+    *) echo "Elige una opcion valida";;
 
 esac
 
