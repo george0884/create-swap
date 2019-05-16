@@ -47,8 +47,11 @@ echo " 7.-Apagar sistema."
 			swapon /swapfile
 			
 			#edita fstab para que reconozca el archivo
-			echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-			echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab;;
+			echo "/swapfile none swap sw 0 0" >> /etc/fstab
+			echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+			#echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+			#echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
+			cat /etc/fstab;;
 	
 	3) echo "¿Quieres Eliminar swap? s/S para SI , n/N para No "
 
@@ -101,7 +104,9 @@ echo " 7.-Apagar sistema."
 
 						echo $valor > /proc/sys/vm/swappiness
 
-						echo "vm.swappiness = $valor" >> /etc/sysctl.conf;;
+						echo "vm.swappiness = $valor" >> /etc/sysctl.conf
+
+						cat /etc/sysctl.conf;;
 
 					c) echo "Listo, el valor volvera por default en el proximo reinicio"
 
