@@ -101,7 +101,7 @@ echo " 7.-Apagar sistema."
 
 						echo $valor > /proc/sys/vm/swappiness
 
-						echo "vm.swappiness = $valor" /etc/sysctl.conf;;
+						echo "vm.swappiness = $?" /etc/sysctl.conf;;
 
 					c) echo "Listo, el valor volvera por default en el proximo reinicio"
 
@@ -136,7 +136,7 @@ do
      ;;
     quit | [Qq])
 
-exit
+exit 0
         ;;
 
 
